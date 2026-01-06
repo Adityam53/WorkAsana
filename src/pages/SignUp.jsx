@@ -35,7 +35,7 @@ const SignUp = () => {
     <div className="row login-Form">
       <div className="form-container">
         <form className="job-form" onSubmit={handleSubmit}>
-          <h1 className="center navbar-brand">workasana</h1>
+          <h1 className="center navbar-brand">Workasana</h1>
 
           <h2 className="page-heading">Create New Account</h2>
           <p className="center">Please enter your details.</p>

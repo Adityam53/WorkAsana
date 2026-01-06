@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../contexts/AauthContext";
 import { useNavigate, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Login = () => {
     <div className="row login-Form">
       <div className="form-container">
         <form className="job-form" onSubmit={handleSubmit}>
-          <h1 className="center navbar-brand">workasana</h1>
+          <h1 className="center navbar-brand">Workasana</h1>
 
           <h2 className="page-heading">Log in to your account</h2>
           <p className="center">Please enter your details.</p>
@@ -54,6 +55,17 @@ const Login = () => {
           </div>
 
           <button className="submit-btn">Sign in</button>
+
+          <div className="or-divider">
+            <span>OR</span>
+          </div>
+
+          <p className="signup-text">
+            Don&apos;t have an account?{" "}
+            <Link to="/signup" className="nav-link">
+              Sign up
+            </Link>
+          </p>
         </form>
       </div>
     </div>

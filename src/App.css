@@ -367,6 +367,33 @@ gap: 2rem;
   color: #fff;
 }
 
+.or-divider {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 1.5rem;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-soft);
+}
+
+.or-divider span {
+  padding: 0 1rem;
+}
+
+.signup-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
 /* ------------------------------------
    VISUALIZATION CENTERING
 ------------------------------------- */
