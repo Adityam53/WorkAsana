@@ -23,7 +23,10 @@ export const TeamProvider = ({ children }) => {
         "https://work-asana-backend-puce.vercel.app/teams",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
           body: JSON.stringify(teamData),
         }
       );

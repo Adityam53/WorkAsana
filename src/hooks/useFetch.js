@@ -12,7 +12,7 @@ export const useFetch = (url) => {
 
         const token = localStorage.getItem("token");
         const headers = { "Content-Type": "application/json" };
-        if (token) headers.authorization = `Bearer ${token}`;
+        if (token) headers.Authorization = `Bearer ${token}`;
 
         const response = await fetch(url, {
           headers,
