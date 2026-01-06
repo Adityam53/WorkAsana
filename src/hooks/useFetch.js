@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useAuthContext } from "../contexts/AauthContext";
 
 export const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
+  const { token, loading: authLoading } = useAuthContext();
   useEffect(() => {
+    if (!url || !token || authLoading) return;
     const fetchData = async () => {
       try {
         setLoading(true);
