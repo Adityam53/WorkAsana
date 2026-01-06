@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
-import { useAuthContext } from "./authContext";
+import { useAuthContext } from "./AauthContext";
 
 const TaskContext = createContext();
 export const useTaskContext = () => useContext(TaskContext);
