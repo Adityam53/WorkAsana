@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../contexts/AauthContext";
 import { useNavigate, Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,15 +10,16 @@ const Login = () => {
   const { login, isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
 
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      return <Navigate to="/dashboard" replace />;
+    }
+  }, [isAuthenticated]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate("/dashboard");
     } catch (error) {
       alert(error.message);
     }
