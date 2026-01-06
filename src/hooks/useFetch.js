@@ -3,42 +3,30 @@ import { useEffect, useState } from "react";
 export const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const controller = new AbortController();
+  const [data, setData] = useState(null);
 
+  useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-
-        const token = localStorage.getItem("token");
-        const headers = { "Content-Type": "application/json" };
-        if (token) headers.authorization = `Bearer ${token}`;
-
-        const response = await fetch(url, {
-          headers,
-          signal: controller.signal,
-        });
+        const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+          throw new Error(`Http Error,status: ${response.status}`);
         }
 
         const responseData = await response.json();
         setData(responseData);
         setError(null);
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          setError(err);
-        }
+      } catch (error) {
+        console.error("API Error", error.message);
+        setError(error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-
-    return () => controller.abort();
   }, [url]);
 
   return { data, loading, error };

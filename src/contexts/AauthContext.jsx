@@ -69,14 +69,19 @@ export const AuthProvider = ({ children }) => {
           }
         );
 
+        if (response.status === 401 || response.status === 403) {
+          logout();
+          return;
+        }
+
         if (!response.ok) {
-          throw new Error("Token Invalid");
+          throw new Error("Server error");
         }
 
         const userData = await response.json();
         setUser(userData);
-      } catch {
-        logout();
+      } catch (error) {
+        console.error("Auth fetch failed:", error);
       } finally {
         setLoading(false);
       }
