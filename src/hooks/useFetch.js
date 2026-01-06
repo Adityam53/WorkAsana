@@ -2,45 +2,49 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../contexts/AauthContext";
 
 export const useFetch = (url) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
+
   const { token, loading: authLoading } = useAuthContext();
+
   useEffect(() => {
-    if (!url || !token || authLoading) {
-      setLoading(false);
-      return;
-    }
+    if (!url || authLoading || !token) return;
+
+    const controller = new AbortController();
+
     const fetchData = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        const token = localStorage.getItem("token");
-        const headers = { "Content-Type": "application/json" };
-        if (token) headers.Authorization = `Bearer ${token}`;
-
         const response = await fetch(url, {
-          headers,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          signal: controller.signal,
         });
 
         if (!response.ok) {
-          const err = new Error("Request failed");
-          err.status = response.status;
-          throw err;
+          throw new Error(`HTTP ${response.status}`);
         }
 
-        const responseData = await response.json();
-        setData(responseData);
+        const json = await response.json();
+        setData(json);
       } catch (err) {
-        console.log(err);
-        setError(err);
+        if (err.name !== "AbortError") {
+          console.error("Fetch error:", err);
+          setError(err);
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
+
+    return () => controller.abort();
   }, [url, token, authLoading]);
 
   return { data, loading, error };
