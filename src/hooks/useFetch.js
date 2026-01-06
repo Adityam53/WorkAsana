@@ -3,24 +3,29 @@ import { useEffect, useState } from "react";
 export const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
-
+  const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(url);
+
+        const token = localStorage.getItem("token");
+        const headers = { "Content-Type": "application/json" };
+        if (token) headers.authorization = `Bearer ${token}`;
+
+        const response = await fetch(url, {
+          headers,
+        });
 
         if (!response.ok) {
-          throw new Error(`Http Error,status: ${response.status}`);
+          throw new Error(`HTTP ${response.status}`);
         }
 
         const responseData = await response.json();
         setData(responseData);
         setError(null);
-      } catch (error) {
-        console.error("API Error", error.message);
-        setError(error);
+      } catch (err) {
+        console.log(err);
       } finally {
         setLoading(false);
       }
