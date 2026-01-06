@@ -8,17 +8,10 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isAuthenticated } = useAuthContext();
-  const navigate = useNavigate();
 
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
   }
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    }
-  }, [isAuthenticated]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
