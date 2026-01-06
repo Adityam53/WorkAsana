@@ -8,6 +8,7 @@ export const useFetch = (url) => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        setError(null);
 
         const token = localStorage.getItem("token");
         const headers = { "Content-Type": "application/json" };
@@ -18,14 +19,16 @@ export const useFetch = (url) => {
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
+          const err = new Error("Request failed");
+          err.status = response.status;
+          throw err;
         }
 
         const responseData = await response.json();
         setData(responseData);
-        setError(null);
       } catch (err) {
         console.log(err);
+        setError(err);
       } finally {
         setLoading(false);
       }
