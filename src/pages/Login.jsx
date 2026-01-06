@@ -10,9 +10,13 @@ const Login = () => {
   const { login, isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
 
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   useEffect(() => {
     if (isAuthenticated) {
-      return <Navigate to="/dashboard" replace />;
+      navigate("/dashboard");
     }
   }, [isAuthenticated]);
 
