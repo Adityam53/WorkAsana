@@ -7,7 +7,10 @@ export const useFetch = (url) => {
   const [data, setData] = useState([]);
   const { token, loading: authLoading } = useAuthContext();
   useEffect(() => {
-    if (!url || !token || authLoading) return;
+    if (!url || !token || authLoading) {
+      setLoading(false);
+      return;
+    }
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -38,7 +41,7 @@ export const useFetch = (url) => {
     };
 
     fetchData();
-  }, [url]);
+  }, [url, token, authLoading]);
 
   return { data, loading, error };
 };
