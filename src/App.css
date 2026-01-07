@@ -642,10 +642,7 @@
   line-height: 1.6;
 }
 
-/* Only project page buttons get right margin */
-.project-page .section-header .buttons {
-  /* margin-right: 2rem; */
-}
+
 
 /* ------------------------------------
    RESPONSIVE
