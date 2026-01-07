@@ -602,10 +602,27 @@
   width: 100%;
   margin: 2rem 0;
   color: var(--accent);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
 }
+
+/* horizontal lines */
+.or-divider::before,
+.or-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-soft);
+}
+
+/* spacing around OR text */
+.or-divider span {
+  padding: 0 1rem;
+  line-height: 1;
+}
+
 
 .signup-text {
   margin-top: 1.5rem;
