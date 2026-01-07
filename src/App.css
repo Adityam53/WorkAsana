@@ -126,13 +126,18 @@
 
 .card {
   width: calc(100% / 3 - 2rem);
-  border: 1px solid var(--border-soft);
-  background-color: #1a1a1a;
-  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    #1a1a1a 0%,
+    #141414 100%
+  );
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   min-height: 180px;
   overflow: hidden;
-  transition: 0.2s ease;
 }
+
 .card > a {
   display: block;
   width: 100%;
