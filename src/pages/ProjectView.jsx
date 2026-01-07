@@ -14,6 +14,7 @@ const ProjectView = () => {
     `https://work-asana-backend-puce.vercel.app/tasks?project=${projectId}`
   );
 
+  const navigate = useNavigate();
   const project = tasks.length > 0 ? tasks[0].project : null;
 
   return (
