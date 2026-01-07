@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
@@ -79,6 +80,8 @@ export const AuthProvider = ({ children }) => {
         }
 
         const userData = await response.json();
+        console.log(userData);
+
         setUser(userData);
       } catch (error) {
         console.error("Auth fetch failed:", error);

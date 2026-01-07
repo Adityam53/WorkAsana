@@ -23,6 +23,7 @@ const TeamList = () => {
           {teams.map((team) => (
             <Card
               key={team._id}
+              to={`/teams/${team._id}`}
               title={team.name}
               description={team.description}
             />

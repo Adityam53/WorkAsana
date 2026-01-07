@@ -15,6 +15,7 @@ const Visualization = () => {
   const { data: closedByOwnerRes, loading: cLoading } = useFetch(
     "https://work-asana-backend-puce.vercel.app/report/closed-tasks?groupBy=owner"
   );
+
   const { users = [] } = useOwnersContext();
 
   const ownerLabels =
@@ -23,17 +24,21 @@ const Visualization = () => {
           (ownerId) => users.find((u) => u._id === ownerId)?.name || "Unknown"
         )
       : [];
+
   return (
     <div className="main visualization">
-      <Heading tag="h2" name="Report Overview" />
+      <div className="section-header">
+        <Heading title="Report Overview" />
+      </div>
 
-      <div className="charts-center">
+      <div className="visualization-center">
         <div className="card-row">
+          {/* LAST WEEK */}
           <div className="card">
             <div className="card-info">
               <h3 className="card-heading">Tasks Closed (Last 7 Days)</h3>
 
-              {lwLoading && <p className="card-text">Loading data...</p>}
+              {lwLoading && <p className="card-text center">Loading data...</p>}
 
               {Array.isArray(lastWeekRes?.tasks) &&
                 lastWeekRes.tasks.length > 0 && (
@@ -48,18 +53,19 @@ const Visualization = () => {
                     )}
                     data={Array(lastWeekRes.tasks.length).fill(1)}
                     datasetLabel="Closed Tasks"
-                    colors={["#36A2EB"]}
+                    colors={["#36A2EB"]} // ✅ restored
                     height="260px"
                   />
                 )}
             </div>
           </div>
 
+          {/* PENDING */}
           <div className="card">
             <div className="card-info">
               <h3 className="card-heading">Pending Work Overview</h3>
 
-              {pLoading && <p className="card-text">Loading data...</p>}
+              {pLoading && <p className="card-text center">Loading data...</p>}
 
               {pendingRes && (
                 <ReusableChart
@@ -67,18 +73,19 @@ const Visualization = () => {
                   labels={["Pending Days", "Total Tasks"]}
                   data={[pendingRes.totalPendingDays, pendingRes.totalTasks]}
                   datasetLabel="Pending"
-                  colors={["#FFCE56", "#FF6384"]}
+                  colors={["#FFCE56", "#FF6384"]} // ✅ restored
                   height="260px"
                 />
               )}
             </div>
           </div>
 
+          {/* BY OWNER */}
           <div className="card">
             <div className="card-info">
               <h3 className="card-heading">Closed Tasks by Owner</h3>
 
-              {cLoading && <p className="card-text">Loading data...</p>}
+              {cLoading && <p className="card-text center">Loading data...</p>}
 
               {closedByOwnerRes && Object.keys(closedByOwnerRes).length > 0 && (
                 <ReusableChart
@@ -86,6 +93,7 @@ const Visualization = () => {
                   labels={ownerLabels}
                   data={Object.values(closedByOwnerRes)}
                   datasetLabel="Closed Tasks"
+                  /* no colors here → same as your original */
                   height="260px"
                 />
               )}

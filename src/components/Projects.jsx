@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useProjectContext } from "../contexts/ProjectContext";
 import Button from "./Button";
 import Card from "./Card";
-import Filters from "./Filters";
 import Heading from "./Heading";
 
 const Projects = () => {
@@ -31,6 +30,7 @@ const Projects = () => {
                   : projects
                 ).map((project) => (
                   <Card
+                    to={`/projects/${project._id}`}
                     key={project._id}
                     title={project.name}
                     description={project.description}

@@ -9,6 +9,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler,
 } from "chart.js";
 import { Bar, Line, Pie, Doughnut } from "react-chartjs-2";
 
@@ -19,6 +20,7 @@ ChartJS.register(
   LineElement,
   ArcElement,
   PointElement,
+  Filler,
   Title,
   Tooltip,
   Legend

@@ -4,7 +4,7 @@ import { useAuthContext } from "../contexts/AauthContext";
 export const useFetch = (url) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   const { token, loading: authLoading } = useAuthContext();
 

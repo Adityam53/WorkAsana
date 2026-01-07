@@ -5,16 +5,54 @@
   --border-soft: #4B4B4B;
 }
 
-/* HEADINGS */
-.page-heading{
+/* ------------------------------------
+   HEADINGS
+------------------------------------- */
+
+.page-heading {
   color: var(--heading);
   margin-bottom: 1.5rem;
   text-align: center;
   font-size: 1.7rem;
 }
 
-/* NAV LINKS */
-.nav-link{
+/* ------------------------------------
+   NAVIGATION
+------------------------------------- */
+
+.header {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #3a3a3a;
+}
+
+.container {
+  margin: 0 2rem;
+}
+
+.navbar-brand {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--heading);
+}
+
+.navbar {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -22,55 +60,21 @@
   transition: 0.2s ease;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: var(--accent-hover);
 }
 
-/* CARD */
-
-.header{
-  width: 100%;
-  padding: 1rem 0;
-  background-color: #3a3a3a;
-}
-
-.container{
-  margin: 0 2rem;
-}
-
-.navbar-brand{
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: var(--heading);
-}
-
-.nav{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.navbar{
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-.nav-item{
-  list-style: none;
-}
-.sidebar{
+.sidebar {
   margin-top: 1rem;
-  padding:  1rem  1rem  1rem 0;
+  padding: 1rem 1rem 1rem 0;
   background-color: #3a3a3a;
   width: 200px;
   max-width: 100%;
   height: 81%;
 }
 
-
 /* ------------------------------------
-   MAIN CONTENT
+   LAYOUT CORE
 ------------------------------------- */
 
 .row {
@@ -78,18 +82,50 @@
   min-height: 100vh;
   gap: 2rem;
 }
-.main{
-flex: 3;  
+
+.main {
+  flex: 3;
+  width: 100%;
 }
 
-.card-row{
+/* ------------------------------------
+   PROJECT / TASK SECTIONS
+------------------------------------- */
+
+.projects,
+.tasks {
+  margin: 1rem 0 2rem 0;
+}
+.tasks .section-header{
+  margin-right: 0;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin:0 2rem 1rem 0;
+
+}
+
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ------------------------------------
+   CARDS
+------------------------------------- */
+
+.card-row {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  
 }
-.card{
-  width: calc(100%/3 - 2rem);
+
+.card {
+  width: calc(100% / 3 - 2rem);
   border: 1px solid var(--border-soft);
   background-color: #1a1a1a;
   border-radius: 8px;
@@ -97,37 +133,50 @@ flex: 3;
   overflow: hidden;
   transition: 0.2s ease;
 }
+.card > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
 
-.card:hover{
+.card:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
 }
 
-.projects, .tasks{
-  margin-top: 1rem;
-}
-.section-header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-.flex{
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-gap: 2rem;
-}
-/* CARD HEADING */
-.card-heading{
+.card-heading {
   margin-bottom: 0.5rem;
-  /* background-color: #2A2A2A; */
   font-weight: 700;
   color: var(--heading);
 }
 
-/* BUTTONS */
-.details-btn, .delete-btn{
+.card-info {
+  padding: 1rem;
+  color: #e0e0e0;
+}
+
+.card-text {
+  margin-bottom: 0.5rem;
+}
+
+.card-text-list {
+  padding-left: 1rem;
+}
+
+/* ------------------------------------
+   BUTTONS
+------------------------------------- */
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.details-btn,
+.delete-btn {
   padding: 0.5rem 1rem;
   border: 1px solid var(--accent);
   color: var(--accent);
@@ -138,38 +187,22 @@ gap: 2rem;
   transition: 0.2s ease;
 }
 
-.login-Form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-
-.details-btn:hover, .delete-btn:hover{
+.details-btn:hover,
+.delete-btn:hover {
   background-color: var(--accent);
   color: #1a1a1a;
 }
 
-.card-info{
-  padding: 1rem;
-  color: #e0e0e0;
-}
-.card-text{
-  margin-bottom: 0.5rem;
-}
-.card-text-list{
-  padding-left: 1rem;
-}
-.buttons{
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.card-detail-align{
+/* ------------------------------------
+   CARD DETAIL (USED ELSEWHERE)
+------------------------------------- */
+
+.card-detail-align {
   display: flex;
   justify-content: center;
 }
-.card-detail{
+
+.card-detail {
   max-width: 900px;
   width: 100%;
   border: 1px solid var(--border-soft);
@@ -188,30 +221,44 @@ gap: 2rem;
   opacity: 0.6;
 }
 
-.form-container {
- padding: 3rem 2rem;   /* space from top */
-  display: block;  
+/* ------------------------------------
+   FORMS
+------------------------------------- */
+
+.login-Form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.form-container {
+  padding: 3rem 2rem;
+  display: block;
+}
+
+.form-page {
+  display: flex;
+  justify-content: center;
+}
 
 .form-page .row {
   min-height: auto;
 }
+
 .job-form {
   width: 100%;
   max-width: 700px;
-  background-color: #1a1a1a;    
+  background-color: #1a1a1a;
   border: 1px solid var(--border-soft);
-  border-radius: 8px;           
+  border-radius: 8px;
   padding: 2rem;
   color: var(--heading);
 }
 
-
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;       
+  margin-bottom: 1.5rem;
 }
 
 .form-group label {
@@ -221,69 +268,33 @@ gap: 2rem;
   color: var(--heading);
 }
 
-
 .form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.9rem 1rem;
-  background-color: #2A2A2A;       
-  border-radius: 6px;
-  color: #e0e0e0;
-  font-size: 0.95rem;
-  transition: 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent);     
-  background-color: #222;          
-}
-
+.form-group textarea,
 .form-group select {
   width: 100%;
   padding: 0.9rem 1rem;
-  background-color: #2A2A2A;      
+  background-color: #2a2a2a;
   border: 1px solid var(--border-soft);
   border-radius: 6px;
   color: #e0e0e0;
   font-size: 0.95rem;
-  cursor: pointer;
-  transition: 0.2s ease;
 }
 
+.form-group input:focus,
+.form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: var(--accent);    
+  border-color: var(--accent);
   background-color: #222;
 }
 
 .form-group select:hover {
-  border-color: var(--accent);    
+  border-color: var(--accent);
 }
 
 .form-group select option {
   background-color: #1a1a1a;
   color: #e0e0e0;
-}
-
-.form-page {
-  display: flex;
-  justify-content: center;     
-}
-
-.form-page .job-form {
-  max-width: 700px;
-  width: 100%;
-}
-
-.form-page .page-heading {
-  margin-bottom: 1rem;
-}
-
-.form-page textarea {
-  resize: vertical;
-  min-height: 100px;
 }
 
 .submit-btn {
@@ -293,7 +304,6 @@ gap: 2rem;
   background: transparent;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 1rem;
   cursor: pointer;
   transition: 0.2s ease;
   margin-top: 1rem;
@@ -301,17 +311,19 @@ gap: 2rem;
 
 .submit-btn:hover {
   background-color: var(--accent);
-  color: #1a1a1a;                 
+  color: #1a1a1a;
 }
 
-/* Outer box */
+/* ------------------------------------
+   SEARCH
+------------------------------------- */
+
 .search-container {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
 }
 
-/* Form structure */
 .search-form {
   display: flex;
   gap: 1rem;
@@ -319,16 +331,13 @@ gap: 2rem;
   max-width: 650px;
 }
 
-/* Input */
 .search-input {
   flex: 1;
   padding: 0.9rem 1rem;
-  background-color: #2A2A2A;
+  background-color: #2a2a2a;
   border: 1px solid var(--border-soft);
   border-radius: 6px;
   color: #e0e0e0;
-  font-size: 0.95rem;
-  transition: 0.2s ease;
 }
 
 .search-input:focus {
@@ -337,29 +346,31 @@ gap: 2rem;
   background-color: #222;
 }
 
-/* Button */
 .search-btn {
   padding: 0.9rem 1.5rem;
-  margin-right: 2rem;
   border: 1px solid var(--accent);
   background: transparent;
   color: var(--accent);
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  transition: 0.2s ease;
 }
 
 .search-btn:hover {
   background-color: var(--accent);
   color: #1a1a1a;
 }
-.center{
+
+/* ------------------------------------
+   UTILITIES
+------------------------------------- */
+
+.center {
   text-align: center;
   margin: 2rem 0;
 }
-.footer{
-  
+
+.footer {
   width: 100%;
   text-align: center;
   padding: 1rem;
@@ -367,129 +378,324 @@ gap: 2rem;
   color: #fff;
 }
 
-.or-divider {
+/* ================================
+   VISUALIZATION – CLEAN DASHBOARD
+================================ */
+
+/* Main visualization container */
+.visualization {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+/* Page heading row */
+.visualization .section-header {
+  margin-bottom: 1rem;
+}
+
+/* Center charts vertically & horizontally */
+.visualization-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Grid of chart cards */
+.visualization .card-row {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Individual chart card */
+.visualization .card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 340px;
+  background: linear-gradient(
+    180deg,
+    #1a1a1a 0%,
+    #141414 100%
+  );
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover polish */
+.visualization .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Card content */
+.visualization .card-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* Card title */
+.visualization .card-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #e3e3e3;
+}
+
+/* Chart container spacing */
+.visualization canvas {
+  margin-top: 0.5rem;
+}
+
+/* Loading / empty text */
+.visualization .card-text {
+  font-size: 0.9rem;
+  color: #a7a7a7;
+}
+
+.visualization .center {
+  margin-top: 2rem;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1024px) {
+  .visualization .card-row {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .visualization {
+    padding: 1.5rem;
+  }
+
+  .visualization .card-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .visualization .card {
+    max-width: 100%;
+  }
+}
+
+/* ================================
+   SETTINGS PAGE (ENHANCED)
+================================ */
+
+.settings-wrapper {
+  height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Bigger, more page-like card */
+.settings-card {
+  width: 100%;
+  max-width: 720px;        /* ⬅️ wider */
+  min-height: 420px;       /* ⬅️ taller */
+  display: flex;
+}
+
+/* Structured content */
+.settings-card-info {
+  width: 100%;
+  padding: 3rem 3.5rem;    /* ⬅️ more breathing room */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+
+/* Top section (avatar + info) */
+.settings-card-info > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Profile avatar */
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #2a2a2a;
+  border: 1px solid var(--border-soft);
   display: flex;
   align-items: center;
-  margin: 2rem 0 1.5rem;
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: 600;
+  justify-content: center;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--heading);
+  margin-bottom: 1.5rem;
 }
 
-.or-divider::before,
-.or-divider::after {
-  content: "";
-  flex: 1;
+/* User name */
+.settings-card .card-heading {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Email */
+.settings-card .muted {
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+}
+
+/* Divider */
+.settings-divider {
+  width: 100%;
   height: 1px;
   background-color: var(--border-soft);
+  margin: 2.5rem 0;
 }
 
-.or-divider span {
-  padding: 0 1rem;
+/* Actions section */
+.settings-card .buttons {
+  justify-content: center;
 }
 
-.signup-text {
-  text-align: center;
-  font-size: 0.9rem;
+/* Logout button emphasis */
+.settings-card .delete-btn {
+  padding: 0.7rem 2rem;
+  font-size: 0.95rem;
+}
+
+/* Subtle muted text */
+.muted {
   color: var(--accent);
+  font-size: 0.9rem;
 }
+
 
 /* ------------------------------------
-   VISUALIZATION CENTERING
+   PROJECT PAGE ENHANCEMENTS (SAFE)
 ------------------------------------- */
 
-.visualization {
-  margin-left: 12rem;
-}
-.charts-center {
-  display: flex;
-  justify-content: center;     
-  align-items: center;         
-  min-height: calc(100vh - 120px); 
-}
-
-.visualization .card {
-  display: flex;
-  justify-content: center;     
-  align-items: center;         
-}
-
-.visualization .card-info {
+.project-page {
+  margin: 2rem 2rem 0 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;         
-  justify-content: center;    
-  text-align: center;
+  gap: 2rem;
+}
+.or-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
+.signup-text {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--accent);
+  line-height: 1.5;
+}
 
+.signup-text a {
+  color: var(--heading);
+  font-weight: 600;
+  margin-left: 0.3rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.signup-text a:hover {
+  color: var(--accent-hover);
+}
+.project-header {
+  width: 100%;
+  border: 1px solid var(--border-soft);
+  background-color: #1a1a1a;
+  border-radius: 10px;
+}
+
+.project-header .card-info {
+  padding: 2rem 1rem;
+}
+
+.project-header .card-text {
+  max-width: 80%;
+  line-height: 1.6;
+}
+
+/* Only project page buttons get right margin */
+.project-page .section-header .buttons {
+  /* margin-right: 2rem; */
+}
 
 /* ------------------------------------
-   RESPONSIVE DESIGN
+   RESPONSIVE
 ------------------------------------- */
 
-/* Large Tablets & Small Laptops */
 @media (max-width: 1024px) {
   .container {
     margin: 0 1rem;
   }
 
   .card {
-    width: calc(50% - 1rem); /* 2 per row */
+    width: calc(50% - 1rem);
   }
 
-  .main {
-  flex: 3;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; }
-  .search-container {
-  padding: 0 1rem;
-}
+  .project-header .card-text {
+    max-width: 100%;
+  }
 }
 
-/* Tablets & Large Phones */
 @media (max-width: 768px) {
   .navbar {
     flex-wrap: wrap;
     gap: 1rem;
   }
 
-  .nav {
-    gap: 1rem;
-  }
-
-  .page-heading {
-    font-size: 1.5rem;
-  }
-
-  .search-form {
+  .row {
     flex-direction: column;
   }
 
-  .search-btn {
+  .sidebar {
     width: 100%;
+    height: auto;
   }
 
   .card {
-    width: 100%; /* 1 per row */
+    width: 100%;
   }
 
-  .job-form {
-    padding: 1.5rem;
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
-  .search-container {
-  padding: 0 1rem;
-}
+
+  .project-page .section-header .buttons {
+    margin-right: 0;
+  }
 }
 
-/* Small Phones */
 @media (max-width: 480px) {
-  .header {
-    padding: 0.7rem 0;
-  }
-
   .navbar-brand {
     font-size: 1.1rem;
   }
@@ -508,38 +714,5 @@ gap: 2rem;
 
   .card-info {
     font-size: 0.9rem;
-  }
-
-  .submit-btn,
-  .search-btn {
-    padding: 0.7rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .footer {
-    font-size: 0.85rem;
-  }
-  .search-container {
-  padding: 0 0.7rem;
-}
-}
-
-/* VERY SMALL SCREENS */
-@media (max-width: 380px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav {
-    flex-wrap: wrap;
-  }
-
-  .card {
-    border-radius: 6px;
-  }
-
-  .job-form {
-    padding: 1rem;
   }
 }

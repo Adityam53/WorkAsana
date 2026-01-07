@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Teams from "./pages/Teams";
 import NewProject from "./pages/NewProject";
 import TaskDetails from "./pages/TaskDetails";
+import ProjectView from "./pages/ProjectView";
 
 function App() {
   return (
@@ -45,10 +46,26 @@ function App() {
               }
             ></Route>
             <Route
+              path="/projects/:projectId"
+              element={
+                <ProtectedRoute>
+                  <ProjectView />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
               path="/teams"
               element={
                 <ProtectedRoute>
                   <Teams />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="/teams/:teamId"
+              element={
+                <ProtectedRoute>
+                  <TeamManagement />
                 </ProtectedRoute>
               }
             ></Route>
