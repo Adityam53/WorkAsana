@@ -22,11 +22,14 @@ export const AuthProvider = ({ children }) => {
       }
     );
 
+    const data = await response.json();
+
     if (!response.ok) {
-      throw new Error("Invalid Credentials");
+      // backend already sends correct error message
+      alert(data.error || "Login failed");
+      return;
     }
 
-    const data = await response.json();
     localStorage.setItem("token", data.token);
     setToken(data.token);
   };
@@ -42,9 +45,14 @@ export const AuthProvider = ({ children }) => {
       }
     );
 
+    const data = await response.json();
+
     if (!response.ok) {
-      throw new Error("SignUp failed");
+      alert(data.error || "Signup failed");
+      return;
     }
+
+    alert("User registered successfully");
   };
 
   const logout = () => {
@@ -69,6 +77,7 @@ export const AuthProvider = ({ children }) => {
             },
           }
         );
+        const userData = await response.json();
 
         if (response.status === 401 || response.status === 403) {
           logout();
@@ -76,15 +85,14 @@ export const AuthProvider = ({ children }) => {
         }
 
         if (!response.ok) {
-          throw new Error("Server error");
+          throw new Error(userData.error || "Failed to fetch user");
         }
 
-        const userData = await response.json();
         console.log(userData);
 
         setUser(userData);
       } catch (error) {
-        console.error("Auth fetch failed:", error);
+        console.error("Auth fetch failed:", error.message);
       } finally {
         setLoading(false);
       }

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import { useFetch } from "../hooks/useFetch";
 import Button from "../components/Button";
@@ -14,6 +14,7 @@ const TeamManagement = () => {
   );
 
   const team = tasks.length > 0 ? tasks[0].team : null;
+  const navigate = useNavigate();
 
   return (
     <>
