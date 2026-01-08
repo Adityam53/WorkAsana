@@ -17,7 +17,7 @@ const TaskList = () => {
       project: "",
       team: "",
     }));
-  }, [setFilters]);
+  }, []);
   return (
     <>
       <div className="projects">

@@ -97,7 +97,7 @@
   margin: 1rem 0 2rem 0;
 }
 .tasks .section-header{
-  margin-right: 0;
+  margin-right: 2rem;
 }
 .section-header {
   display: flex;
@@ -177,7 +177,6 @@
 .buttons {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
 }
 
 .task-filters {
@@ -620,7 +619,7 @@
 ------------------------------------- */
 
 .project-page {
-  margin: 2rem 2rem 0 0;
+  margin: 2rem 0 0 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -674,7 +673,7 @@
   color: var(--accent-hover);
 }
 .project-header {
-  width: 100%;
+  width: 97%;
   border: 1px solid var(--border-soft);
   background-color: #1a1a1a;
   border-radius: 10px;
@@ -695,51 +694,92 @@
    RESPONSIVE
 ------------------------------------- */
 
-@media (max-width: 1024px) {
-  .container {
-    margin: 0 1rem;
-  }
+/* =====================================================
+   RESPONSIVE FIXES (NON-DESTRUCTIVE)
+   ===================================================== */
 
+/* ---------- Large tablets ---------- */
+@media (max-width: 1024px) {
   .card {
     width: calc(50% - 1rem);
   }
 
-  .project-header .card-text {
-    max-width: 100%;
+  .section-header {
+    margin-right: 0;
   }
 }
 
+/* ---------- Tablets & small laptops ---------- */
 @media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
+  /* Stack main layout */
   .row {
     flex-direction: column;
   }
 
+  /* Sidebar full width */
   .sidebar {
     width: 100%;
     height: auto;
+    padding-right: 1rem;
   }
 
+  /* Cards full width */
   .card {
     width: 100%;
   }
 
+  /* Filters stack */
+  .task-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task-filters .form-group {
+    width: 100%;
+  }
+
+  .task-filters select,
+  .task-filters .delete-btn {
+    width: 100%;
+  }
+
+  /* Header buttons stack */
+  .buttons {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .buttons button {
+    width: 100%;
+  }
+
+  /* Section header alignment */
   .section-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-
-  .project-page .section-header .buttons {
-    margin-right: 0;
-  }
 }
 
+/* ---------- Mobile phones ---------- */
 @media (max-width: 480px) {
+  .container {
+    margin: 0 1rem;
+  }
+  
+.projects, .tasks, .task-filters, .project-header{
+  margin: 0 1rem 0 1rem;
+}
+.card-detail-align{
+    margin: 0 1rem 0 1rem;
+
+}
+  .page-heading {
+    font-size: 1.3rem;
+  }
+.project-header{
+  width: 92%;
+}
   .navbar-brand {
     font-size: 1.1rem;
   }
@@ -748,15 +788,16 @@
     font-size: 0.8rem;
   }
 
-  .page-heading {
-    font-size: 1.3rem;
-  }
-
   .card-heading {
     font-size: 1rem;
   }
 
   .card-info {
     font-size: 0.9rem;
+  }
+
+  /* Project header padding fix */
+  .project-header .card-info {
+    padding: 1.5rem 1rem;
   }
 }
