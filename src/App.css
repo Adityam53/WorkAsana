@@ -180,6 +180,13 @@
   margin-top: 1rem;
 }
 
+.task-filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 .details-btn,
 .delete-btn {
   padding: 0.5rem 1rem;
@@ -319,6 +326,24 @@
   color: #1a1a1a;
 }
 
+.task-filters {
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.task-filters .form-group {
+  min-width: 180px;
+}
+
+.task-filters select {
+  height: 50px;
+}
+
+/* Button alignment */
+.task-filters .delete-btn {
+  height: 50px;
+  white-space: nowrap;
+}
 /* ------------------------------------
    SEARCH
 ------------------------------------- */

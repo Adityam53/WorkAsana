@@ -3,11 +3,21 @@ import { useTaskContext } from "../contexts/TaskContext";
 import Button from "./Button";
 import Card from "./Card";
 import Heading from "./Heading";
+import TaskFilters from "./TaskFilters";
+import { useEffect } from "react";
 
 const TaskList = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { tasks, loading, error } = useTaskContext();
+  const { tasks, loading, error, setFilters } = useTaskContext();
+
+  useEffect(() => {
+    setFilters((prev) => ({
+      ...prev,
+      project: "",
+      team: "",
+    }));
+  }, [setFilters]);
   return (
     <>
       <div className="projects">
@@ -15,6 +25,7 @@ const TaskList = () => {
           <Heading title="Tasks" />
           <Button name="+ New Task" func={() => navigate("/addtask")} />
         </div>
+        <TaskFilters />
 
         {loading && <p>Loading Tasks...</p>}
         {error && <p>Error in loading Tasks.</p>}

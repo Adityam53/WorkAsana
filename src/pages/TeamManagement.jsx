@@ -2,19 +2,34 @@ import { useNavigate, useParams } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import { useFetch } from "../hooks/useFetch";
 import Button from "../components/Button";
+import { useTeamContext } from "../contexts/TeamContext";
+import { useTaskContext } from "../contexts/TaskContext";
+import { useEffect } from "react";
+import TaskFilters from "../components/TaskFilters";
 
 const TeamManagement = () => {
   const { teamId } = useParams();
-  const {
-    data: tasks = [],
-    loading,
-    error,
-  } = useFetch(
-    `https://work-asana-backend-puce.vercel.app/tasks?team=${teamId}`
-  );
+  const { teams } = useTeamContext();
+  const { tasks, loading, error, setFilters } = useTaskContext();
 
-  const team = tasks.length > 0 ? tasks[0].team : null;
+  // const {
+  //   data: tasks = [],
+  //   loading,
+  //   error,
+  // } = useFetch(
+  //   `https://work-asana-backend-puce.vercel.app/tasks?team=${teamId}`
+  // );
+
+  const team = teams.find((t) => t._id === teamId);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setFilters((prev) => ({ ...prev, team: teamId }));
+
+    return () => {
+      setFilters((prev) => ({ ...prev, team: "" }));
+    };
+  }, [teamId, setFilters]);
 
   return (
     <>
@@ -33,6 +48,8 @@ const TeamManagement = () => {
               )}
             </div>
           </div>
+
+          <TaskFilters />
 
           <section className="tasks">
             <div className="section-header">

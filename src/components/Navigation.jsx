@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 const Navigation = () => {
-  const pages = ["Dashboard", "Projects", "Teams", "Reports", "Settings"];
+  const pages = [
+    "Dashboard",
+    "Tasks",
+    "Projects",
+    "Teams",
+    "Reports",
+    "Settings",
+  ];
   return (
     <>
       <div className="sidebar">

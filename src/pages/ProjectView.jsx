@@ -2,20 +2,34 @@ import { useNavigate, useParams } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import { useFetch } from "../hooks/useFetch";
 import Button from "../components/Button";
+import { useProjectContext } from "../contexts/ProjectContext";
+import TaskFilters from "../components/TaskFilters";
+import { useEffect } from "react";
+import { useTaskContext } from "../contexts/TaskContext";
 
 const ProjectView = () => {
   const { projectId } = useParams();
-
-  const {
-    data: tasks = [],
-    loading,
-    error,
-  } = useFetch(
-    `https://work-asana-backend-puce.vercel.app/tasks?project=${projectId}`
-  );
-
+  const { projects } = useProjectContext();
   const navigate = useNavigate();
-  const project = tasks.length > 0 ? tasks[0].project : null;
+
+  // const {
+  //   data: tasks = [],
+  //   loading,
+  //   error,
+  // } = useFetch(
+  //   `https://work-asana-backend-puce.vercel.app/tasks?project=${projectId}`
+  // );
+  const { tasks, loading, error, setFilters } = useTaskContext();
+
+  const project = projects.find((p) => p._id === projectId);
+
+  useEffect(() => {
+    setFilters((prev) => ({ ...prev, project: projectId }));
+
+    return () => {
+      setFilters((prev) => ({ ...prev, project: "" }));
+    };
+  }, [projectId, setFilters]);
 
   return (
     <main className="row">
@@ -34,7 +48,7 @@ const ProjectView = () => {
             )}
           </div>
         </div>
-
+        <TaskFilters />
         <section className="tasks">
           <div className="section-header">
             <h2 className="card-heading">Tasks</h2>

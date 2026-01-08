@@ -16,6 +16,7 @@ import Teams from "./pages/Teams";
 import NewProject from "./pages/NewProject";
 import TaskDetails from "./pages/TaskDetails";
 import ProjectView from "./pages/ProjectView";
+import Tasks from "./pages/Tasks";
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="/tasks"
+              element={
+                <ProtectedRoute>
+                  <Tasks />
                 </ProtectedRoute>
               }
             ></Route>
