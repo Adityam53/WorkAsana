@@ -116,7 +116,6 @@ export const TaskProvider = ({ children }) => {
       const data = await res.json();
       const updatedTask = data.task;
 
-      // 🔥 update local state
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
           task._id === updatedTask._id ? updatedTask : task

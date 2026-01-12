@@ -707,6 +707,14 @@
   .section-header {
     margin-right: 0;
   }
+
+  .projects, .tasks, .project-header, .project-page .task-filters{
+  margin: 0 1rem 0 1rem;
+}
+.projects{
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
 }
 
 /* ---------- Tablets & small laptops ---------- */
@@ -733,6 +741,13 @@
     flex-direction: column;
     align-items: stretch;
   }
+
+  .projects, .tasks, .project-header, .project-page .task-filters{
+  margin: 0 1rem 0 1rem;
+}
+.projects{
+  margin-bottom: 1rem;
+}
 
   .task-filters .form-group {
     width: 100%;
