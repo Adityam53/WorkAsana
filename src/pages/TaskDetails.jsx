@@ -3,10 +3,18 @@ import SideBar from "../components/SideBar";
 import { useTaskContext } from "../contexts/TaskContext";
 
 const TaskDetails = () => {
-  const { tasks } = useTaskContext();
+  const { tasks, updateTask } = useTaskContext();
   const { taskId } = useParams();
 
   const task = tasks.find((t) => t._id === taskId);
+
+  const markAsCompleted = async () => {
+    try {
+      await updateTask(taskId, { status: "Completed" });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (!task) {
     return (
@@ -71,7 +79,9 @@ const TaskDetails = () => {
 
               {task.status !== "Completed" && (
                 <div className="buttons">
-                  <button className="details-btn">Mark as Completed</button>
+                  <button className="details-btn" onClick={markAsCompleted}>
+                    Mark as Completed
+                  </button>
                 </div>
               )}
             </div>

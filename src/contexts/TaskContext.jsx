@@ -92,6 +92,44 @@ export const TaskProvider = ({ children }) => {
     setTasks((prev) => [...prev, data]);
   };
 
+  const updateTask = async (taskId, updates) => {
+    if (!token) throw new Error("You must be logged in");
+
+    try {
+      const res = await fetch(
+        `https://work-asana-backend-puce.vercel.app/tasks/${taskId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updates),
+        }
+      );
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Failed to update task");
+      }
+
+      const data = await res.json();
+      const updatedTask = data.task;
+
+      // 🔥 update local state
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task._id === updatedTask._id ? updatedTask : task
+        )
+      );
+
+      return updatedTask;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    }
+  };
+
   const clearFilters = () => {
     setFilters((prev) => ({
       ...prev,
@@ -110,6 +148,7 @@ export const TaskProvider = ({ children }) => {
     clearFilters,
     fetchTasks,
     addTask,
+    updateTask,
   };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

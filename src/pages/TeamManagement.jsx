@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
 import SideBar from "../components/SideBar";
-import { useFetch } from "../hooks/useFetch";
 import Button from "../components/Button";
 import { useTeamContext } from "../contexts/TeamContext";
 import { useTaskContext } from "../contexts/TaskContext";
@@ -51,7 +50,7 @@ const TeamManagement = () => {
 
           <TaskFilters />
 
-          <section className="tasks">
+          <section className="projects">
             <div className="section-header">
               <h2 className="card-heading">Tasks</h2>
 

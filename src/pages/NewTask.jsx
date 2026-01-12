@@ -7,6 +7,7 @@ import { useTagContext } from "../contexts/TagContext";
 import { useProjectContext } from "../contexts/ProjectContext";
 import { useTeamContext } from "../contexts/TeamContext";
 import { useNavigate } from "react-router-dom";
+import { customSelectStyles } from "../styles/customSelectStyles";
 
 const NewTask = () => {
   const [formData, setFormData] = useState({
@@ -119,6 +120,7 @@ const NewTask = () => {
                 <label>Owners</label>
                 <Select
                   isMulti
+                  styles={customSelectStyles}
                   options={ownerOptions}
                   isClearable
                   placeholder="owners"
@@ -131,6 +133,7 @@ const NewTask = () => {
               <div className="form-group" style={{ flex: 1 }}>
                 <label>Tags</label>
                 <Select
+                  styles={customSelectStyles}
                   isMulti
                   isClearable
                   onChange={(selectedOptions) =>
