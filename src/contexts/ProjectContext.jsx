@@ -1,10 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
+import { useTaskContext } from "./TaskContext";
+import { useAuthContext } from "./AauthContext";
+import { toast } from "react-toastify";
 
 const ProjectContext = createContext();
 export const useProjectContext = () => useContext(ProjectContext);
 
 export const ProjectProvider = ({ children }) => {
+  const { token } = useAuthContext();
   const [projects, setProjects] = useState([]);
 
   const { data, error, loading } = useFetch(
@@ -33,10 +37,12 @@ export const ProjectProvider = ({ children }) => {
       );
 
       if (!res.ok) {
+        toast.error("Failed to add Project");
         throw new Error(`Failed to add Project`);
       }
 
       const data = await res.json();
+      toast.success("Project Added");
       console.log(data);
 
       setProjects((prev) => [...prev, data.savedProject]);

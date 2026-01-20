@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
@@ -26,12 +26,13 @@ export const AuthProvider = ({ children }) => {
 
     if (!response.ok) {
       // backend already sends correct error message
-      alert(data.error || "Login failed");
+      toast.error(data.error || "Login failed");
       return;
     }
 
     localStorage.setItem("token", data.token);
     setToken(data.token);
+    toast.success("Login Successfull!");
   };
 
   //signup
@@ -52,13 +53,14 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    alert("User registered successfully");
+    toast.success("User registered successfully");
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
+    toast.success("Logout Successfull");
   };
 
   useEffect(() => {

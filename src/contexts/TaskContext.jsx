@@ -5,6 +5,7 @@ import {
   useState,
   useCallback,
 } from "react";
+import { toast } from "react-toastify";
 import { useAuthContext } from "./AauthContext";
 
 const TaskContext = createContext(null);
@@ -85,10 +86,12 @@ export const TaskProvider = ({ children }) => {
 
     if (!res.ok) {
       const err = await res.json();
+      toast.error(err);
       throw new Error(err.error || "Failed to add task");
     }
 
     const data = await res.json();
+    toast.success("Task Added");
     setTasks((prev) => [...prev, data]);
   };
 
@@ -110,6 +113,7 @@ export const TaskProvider = ({ children }) => {
 
       if (!res.ok) {
         const err = await res.json();
+        toast.error(err);
         throw new Error(err.error || "Failed to update task");
       }
 
@@ -121,6 +125,7 @@ export const TaskProvider = ({ children }) => {
           task._id === updatedTask._id ? updatedTask : task
         )
       );
+      toast.success("Marked Completed!");
 
       return updatedTask;
     } catch (err) {

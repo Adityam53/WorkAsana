@@ -1,4 +1,6 @@
 import "./App.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -17,11 +19,23 @@ import NewProject from "./pages/NewProject";
 import TaskDetails from "./pages/TaskDetails";
 import ProjectView from "./pages/ProjectView";
 import Tasks from "./pages/Tasks";
+import { useEffect } from "react";
 
 function App() {
   return (
     <>
       <Router>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="dark"
+        />
+
         <Routes>
           <Route element={<AuthLayout />}>
             {" "}

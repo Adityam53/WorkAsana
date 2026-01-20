@@ -33,7 +33,7 @@ const NewTask = () => {
     e.preventDefault();
     try {
       await addTask(formData);
-      navigate("/dashboard");
+      navigate("/tasks");
     } catch (error) {
       alert(error.message);
       console.log(error);
