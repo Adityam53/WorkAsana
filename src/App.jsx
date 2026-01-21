@@ -19,7 +19,6 @@ import NewProject from "./pages/NewProject";
 import TaskDetails from "./pages/TaskDetails";
 import ProjectView from "./pages/ProjectView";
 import Tasks from "./pages/Tasks";
-import { useEffect } from "react";
 
 function App() {
   return (
