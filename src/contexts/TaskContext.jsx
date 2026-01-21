@@ -86,7 +86,6 @@ export const TaskProvider = ({ children }) => {
 
     if (!res.ok) {
       const err = await res.json();
-      toast.error(err);
       throw new Error(err.error || "Failed to add task");
     }
 
