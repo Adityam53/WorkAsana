@@ -37,7 +37,7 @@ npm run dev
 
 ## Demo Video
 
-Watch a walkthrough of all major features of this app: (https://www.loom.com/share/520b17afbc324ff28906a80903bef322)
+Watch a walkthrough of all major features of this app:[Loom Video](https://www.loom.com/share/520b17afbc324ff28906a80903bef322)
 
 ---
 
