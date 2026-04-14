@@ -14,8 +14,9 @@ Developed using React JS, React Router, Express, Node JS, MongoDB and Chart.js.
 ## Quick Start
 
 ```
-git clone <your-repo-url>
-cd workasana
+git clone <https://github.com/Adityam53/WorkAsana.git>
+cd WorkAsana
+cd Front-End
 npm install
 npm run dev
 ```
