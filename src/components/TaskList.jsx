@@ -94,7 +94,7 @@ const TaskList = ({ projectId = "", teamId = "" }) => {
         <Button name="+ New Task" func={() => navigate("/addtask")} />
       </div>
       <p className="section-subtitle">
-        Organize, prioritize, and manage tasks efficiently
+        Bring structure, visibility, and control to every task{" "}
       </p>
       {!isDashboard && <TaskFilters />}
 
