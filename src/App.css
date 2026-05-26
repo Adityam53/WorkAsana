@@ -497,9 +497,7 @@
   flex-direction: column;
   margin: 2rem 0 2rem 0;
 }
-.main.visualization {
-  /* padding-left: 2rem; */
-}
+
 /* Page heading row */
 .visualization .section-header {
   width: 100%;
