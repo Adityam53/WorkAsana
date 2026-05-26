@@ -2,13 +2,25 @@ import { useState } from "react";
 import { useAuthContext } from "../contexts/AauthContext";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirect, setRedirect] = useState(false);
   const { login, isAuthenticated } = useAuthContext();
 
-  if (isAuthenticated) {
+  useEffect(() => {
+    if (isAuthenticated) {
+      const timer = setTimeout(() => {
+        setRedirect(true);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAuthenticated]);
+
+  if (redirect) {
     return <Navigate to="/dashboard" replace />;
   }
 

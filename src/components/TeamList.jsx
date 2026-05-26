@@ -3,6 +3,7 @@ import Heading from "./Heading";
 import Button from "./Button";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
+
 const TeamList = () => {
   const navigate = useNavigate();
 
@@ -14,13 +15,19 @@ const TeamList = () => {
         <Heading title="Teams" />
         <Button func={() => navigate("/addteam")} name="+ New Team" />
       </div>
-
-      {loading && <p>Loading Teams...</p>}
+      <p className="section-subtitle">
+        Coordinate team collaboration and workload distribution{" "}
+      </p>
       {error && <p>Error in loading Teams.</p>}
 
-      {teams && teams.length > 0 && (
-        <div className="card-row">
-          {teams.map((team) => (
+      <div className="card-row">
+        {loading &&
+          Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="card skeleton-card" />
+          ))}
+
+        {!loading &&
+          teams.map((team) => (
             <Card
               key={team._id}
               to={`/teams/${team._id}`}
@@ -28,9 +35,15 @@ const TeamList = () => {
               description={team.description}
             />
           ))}
+      </div>
+
+      {!loading && teams.length === 0 && (
+        <div className="center">
+          <p>No teams found.</p>
         </div>
       )}
     </div>
   );
 };
+
 export default TeamList;

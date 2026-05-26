@@ -4,10 +4,10 @@ import TeamList from "../components/TeamList";
 const Teams = () => {
   return (
     <main className="row">
-      <div>
+      {/* <div>
         <SideBar />
-      </div>
-      <div className="main">
+      </div> */}
+      <div className="">
         <TeamList />
       </div>
     </main>

@@ -5,15 +5,15 @@ import { useOwnersContext } from "../contexts/OwnersContext";
 
 const Visualization = () => {
   const { data: lastWeekRes, loading: lwLoading } = useFetch(
-    "https://work-asana-backend-puce.vercel.app/report/last-week"
+    "https://work-asana-backend-puce.vercel.app/report/last-week",
   );
 
   const { data: pendingRes, loading: pLoading } = useFetch(
-    "https://work-asana-backend-puce.vercel.app/report/pending"
+    "https://work-asana-backend-puce.vercel.app/report/pending",
   );
 
   const { data: closedByOwnerRes, loading: cLoading } = useFetch(
-    "https://work-asana-backend-puce.vercel.app/report/closed-tasks?groupBy=owner"
+    "https://work-asana-backend-puce.vercel.app/report/closed-tasks?groupBy=owner",
   );
 
   const { users = [] } = useOwnersContext();
@@ -21,16 +21,18 @@ const Visualization = () => {
   const ownerLabels =
     closedByOwnerRes && users.length > 0
       ? Object.keys(closedByOwnerRes).map(
-          (ownerId) => users.find((u) => u._id === ownerId)?.name || "Unknown"
+          (ownerId) => users.find((u) => u._id === ownerId)?.name || "Unknown",
         )
       : [];
 
   return (
-    <div className="main visualization">
+    <div className="visualization">
       <div className="section-header">
         <Heading title="Report Overview" />
       </div>
-
+      <p className="section-subtitle">
+        Review productivity trends and project performance metrics
+      </p>
       <div className="visualization-center">
         <div className="card-row">
           {/* LAST WEEK */}
@@ -49,7 +51,7 @@ const Visualization = () => {
                         weekday: "short",
                         day: "numeric",
                         month: "short",
-                      })
+                      }),
                     )}
                     data={Array(lastWeekRes.tasks.length).fill(1)}
                     datasetLabel="Closed Tasks"

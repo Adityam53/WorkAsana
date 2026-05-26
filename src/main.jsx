@@ -24,5 +24,5 @@ createRoot(document.getElementById("root")).render(
         </TaskProvider>
       </ProjectProvider>
     </AuthProvider>
-  </StrictMode>
+  </StrictMode>,
 );

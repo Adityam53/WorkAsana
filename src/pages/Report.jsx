@@ -5,12 +5,7 @@ const Report = () => {
   return (
     <>
       <main className="row">
-        <div>
-          <SideBar />
-        </div>
-        <div>
-          <Visualization />
-        </div>
+        <Visualization />
       </main>
     </>
   );

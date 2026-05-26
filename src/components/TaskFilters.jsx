@@ -1,26 +1,27 @@
 import { useOwnersContext } from "../contexts/OwnersContext";
 import { useTagContext } from "../contexts/TagContext";
-import { useTaskContext } from "../contexts/TaskContext";
+import { useTaskQuery } from "../hooks/useTaskQuery";
 
 const TaskFilters = () => {
-  const { filters, setFilters, clearFilters } = useTaskContext();
   const { users = [] } = useOwnersContext();
   const { tags = [] } = useTagContext();
 
-  const handleSingleChange = (key) => (e) => {
-    setFilters((prev) => ({
-      ...prev,
-      [key]: e.target.value,
-    }));
-  };
+  const {
+    owner,
+    status,
+    tags: tag,
+    updateFilter,
+    clearFilters,
+  } = useTaskQuery();
 
   return (
-    <div className="task-filters ">
+    <div className="task-filters">
       <div className="form-group">
         <label>Status</label>
+
         <select
-          value={filters.status || ""}
-          onChange={handleSingleChange("status")}
+          value={status}
+          onChange={(e) => updateFilter("status", e.target.value)}
         >
           <option value="">All Status</option>
           <option value="To Do">Todo</option>
@@ -32,14 +33,16 @@ const TaskFilters = () => {
 
       <div className="form-group">
         <label>Tags</label>
+
         <select
-          value={filters.tags || ""}
-          onChange={handleSingleChange("tags")}
+          value={tag}
+          onChange={(e) => updateFilter("tags", e.target.value)}
         >
           <option value="">All Tags</option>
-          {tags.map((t) => (
-            <option key={t._id || t.name} value={t.name}>
-              {t.name}
+
+          {tags.map((tag) => (
+            <option key={tag._id || tag.name} value={tag.name}>
+              {tag.name}
             </option>
           ))}
         </select>
@@ -47,14 +50,16 @@ const TaskFilters = () => {
 
       <div className="form-group">
         <label>Owner</label>
+
         <select
-          value={filters.owner || ""}
-          onChange={handleSingleChange("owner")}
+          value={owner}
+          onChange={(e) => updateFilter("owner", e.target.value)}
         >
           <option value="">All Owners</option>
-          {users.map((u) => (
-            <option key={u._id} value={u._id}>
-              {u.name}
+
+          {users.map((user) => (
+            <option key={user._id} value={user._id}>
+              {user.name}
             </option>
           ))}
         </select>
@@ -62,7 +67,8 @@ const TaskFilters = () => {
 
       <div className="form-group">
         <label>&nbsp;</label>
-        <button type="button" className="delete-btn" onClick={clearFilters}>
+
+        <button className="delete-btn" onClick={clearFilters}>
           Clear
         </button>
       </div>

@@ -5,12 +5,12 @@ const ProjectManagement = () => {
   return (
     <>
       <main className="row">
-        <div>
+        {/* <div>
           {" "}
           <SideBar />
-        </div>
+        </div> */}
 
-        <div className="main">
+        <div className="">
           {" "}
           <Projects />
         </div>

@@ -12,7 +12,7 @@ export const ProjectProvider = ({ children }) => {
   const [projects, setProjects] = useState([]);
 
   const { data, error, loading } = useFetch(
-    "https://work-asana-backend-puce.vercel.app/projects"
+    "https://work-asana-backend-puce.vercel.app/projects",
   );
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const ProjectProvider = ({ children }) => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(projectData),
-        }
+        },
       );
 
       if (!res.ok) {

@@ -27,10 +27,10 @@ const NewTeam = () => {
   return (
     <>
       <main className="row">
-        <div>
+        {/* <div>
           <SideBar />
-        </div>
-        <div className="main form-page">
+        </div> */}
+        <div className=" form-page">
           <div className="form-container">
             <form className="job-form" onSubmit={handleSubmit}>
               <h2 className="page-heading">Create New Team</h2>

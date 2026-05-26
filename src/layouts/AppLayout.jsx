@@ -1,14 +1,20 @@
-import Header from "../components/Header";
+import SideBar from "../components/SideBar";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
 
 const AppLayout = () => {
   return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
+    <div className="app-layout">
+      <SideBar />
+
+      <div className="content-wrapper">
+        <main className="main">
+          <Outlet />
+        </main>
+
+        <Footer />
+      </div>
+    </div>
   );
 };
 
