@@ -10,18 +10,8 @@ const Login = () => {
   const [redirect, setRedirect] = useState(false);
   const { login, isAuthenticated } = useAuthContext();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      const timer = setTimeout(() => {
-        setRedirect(true);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isAuthenticated]);
-
-  if (redirect) {
-    return <Navigate to="/dashboard" replace />;
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />;
   }
 
   const handleSubmit = async (e) => {

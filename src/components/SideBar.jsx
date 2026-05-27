@@ -15,7 +15,13 @@ const SideBar = () => {
       <div className="sidebar-content">
         <Navigation setOpen={setOpen} />
 
-        <button className="sidebar-logout" onClick={logout}>
+        <button
+          className="sidebar-logout"
+          onClick={() => {
+            logout();
+            document.body.classList.remove("menu-open");
+          }}
+        >
           <FiLogOut />
           <span>Logout</span>
         </button>
