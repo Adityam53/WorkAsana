@@ -289,6 +289,7 @@
   overflow: hidden;
   transition: 0.2s ease;
   margin-top: 2rem;
+  margin-right: 2rem;
 }
 
 .skeleton-card {
@@ -985,9 +986,11 @@
 
   .projects,
   .tasks,
-  .project-header,
-  .project-page .task-filters {
+  .project-header {
     margin: 0 2rem 0 2rem;
+  }
+  .project-page .task-filters {
+    padding: 2rem 0 2rem 0;
   }
   .projects {
     margin-bottom: 1rem;
@@ -1009,6 +1012,7 @@
   .buttons {
     flex-wrap: wrap;
     width: 100%;
+    padding: 0 2rem 0 2rem;
   }
 
   .buttons button {
@@ -1030,10 +1034,11 @@
   }
 
   .projects,
-  .tasks,
-  .project-header,
-  .project-page .task-filters {
+  .tasks {
     margin: 0 0 0 2rem;
+  }
+  .project-header {
+    margin: 0 2rem 0 2rem;
   }
   .projects {
     margin-bottom: 1rem;
