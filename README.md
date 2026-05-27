@@ -1,6 +1,6 @@
 # Workasana – Task Management & Collaboration App
 
-A full-stack task management application where users can create, manage, filter, and track tasks across teams and projects. The app includes authentication, advanced filtering, reporting, and visualization features for efficient workflow management.
+A full-stack task management application where users can create, manage, filter, and track tasks across teams and projects. The app includes authentication, advanced filtering, pagination, reporting, and visualization features for efficient workflow management.
 Developed using React JS, React Router, Express, Node JS, MongoDB and Chart.js. 
 
 ---
