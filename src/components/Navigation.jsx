@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   FiHome,
   FiCheckSquare,
@@ -9,6 +9,7 @@ import {
 } from "react-icons/fi";
 
 const Navigation = ({ setOpen }) => {
+  const location = useLocation();
   const pages = [
     {
       name: "Dashboard",
@@ -39,21 +40,27 @@ const Navigation = ({ setOpen }) => {
   return (
     <>
       <ul className="nav container">
-        {pages.map((page) => (
-          <li key={page.name} className="nav-item">
-            <Link
-              to={`/${page.name.toLowerCase()}`}
-              onClick={() => {
-                setOpen(false);
-                document.body.classList.remove("menu-open");
-              }}
-              className="nav-link"
-            >
-              <span className="nav-icon">{page.icon}</span>
-              <span>{page.name}</span>
-            </Link>
-          </li>
-        ))}
+        {pages.map((page) => {
+          const path = `/${page.name.toLowerCase()}`;
+
+          return (
+            <li key={page.name} className="nav-item">
+              <Link
+                to={path}
+                onClick={() => {
+                  setOpen(false);
+                  document.body.classList.remove("menu-open");
+                }}
+                className={`nav-link ${
+                  location.pathname === path ? "active-nav" : ""
+                }`}
+              >
+                <span className="nav-icon">{page.icon}</span>
+                <span>{page.name}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </>
   );
