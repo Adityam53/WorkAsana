@@ -1968,6 +1968,7 @@ p {
   line-height: 1.7;
 
   display: -webkit-box;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 
