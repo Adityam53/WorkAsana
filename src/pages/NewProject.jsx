@@ -64,7 +64,7 @@ const NewProject = () => {
               />
             </div>
 
-            <button className="submit-btn">Add Project</button>
+            <button className="btn-primary">Add Project</button>
           </form>
         </div>
       </div>

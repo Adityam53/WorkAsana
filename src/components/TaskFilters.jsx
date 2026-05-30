@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { useOwnersContext } from "../contexts/OwnersContext";
 import { useTagContext } from "../contexts/TagContext";
 import { useTaskQuery } from "../hooks/useTaskQuery";
@@ -6,6 +7,9 @@ const TaskFilters = () => {
   const { users = [] } = useOwnersContext();
   const { tags = [] } = useTagContext();
 
+  const location = useLocation();
+
+  const isDashboard = location.pathname !== "/dashboard";
   const {
     owner,
     status,
@@ -31,22 +35,24 @@ const TaskFilters = () => {
         </select>
       </div>
 
-      <div className="form-group">
-        <label>Tags</label>
+      {isDashboard && (
+        <div className="form-group">
+          <label>Tags</label>
 
-        <select
-          value={tag}
-          onChange={(e) => updateFilter("tags", e.target.value)}
-        >
-          <option value="">All Tags</option>
+          <select
+            value={tag}
+            onChange={(e) => updateFilter("tags", e.target.value)}
+          >
+            <option value="">All Tags</option>
 
-          {tags.map((tag) => (
-            <option key={tag._id || tag.name} value={tag.name}>
-              {tag.name}
-            </option>
-          ))}
-        </select>
-      </div>
+            {tags.map((tag) => (
+              <option key={tag._id || tag.name} value={tag.name}>
+                {tag.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div className="form-group">
         <label>Owner</label>
@@ -68,7 +74,7 @@ const TaskFilters = () => {
       <div className="form-group">
         <label>&nbsp;</label>
 
-        <button className="delete-btn" onClick={clearFilters}>
+        <button className="btn-ghost" onClick={clearFilters}>
           Clear
         </button>
       </div>

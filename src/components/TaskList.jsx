@@ -11,7 +11,7 @@ import { useAuthContext } from "../contexts/AauthContext";
 
 const BASE_URL = "https://work-asana-backend-puce.vercel.app";
 
-const TaskList = ({ projectId = "", teamId = "" }) => {
+const TaskList = ({ projectId = "", teamId = "", onCountChange }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -76,6 +76,9 @@ const TaskList = ({ projectId = "", teamId = "" }) => {
         const data = await res.json();
 
         setTasks(data.tasks || []);
+        if (onCountChange) {
+          onCountChange(data.totalTasks || data.tasks.length);
+        }
         setTotalPages(data.totalPages || 1);
       } catch (err) {
         setError(err.message);
@@ -96,7 +99,7 @@ const TaskList = ({ projectId = "", teamId = "" }) => {
       <p className="section-subtitle">
         Bring structure, visibility, and control to every task{" "}
       </p>
-      {!isDashboard && <TaskFilters />}
+      <TaskFilters />
 
       {loading ? (
         <div className="card-row">

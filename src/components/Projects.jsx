@@ -37,6 +37,7 @@ const Projects = () => {
             : projects
           ).map((project) => (
             <Card
+              type="Project"
               key={project._id}
               to={`/projects/${project._id}`}
               title={project.name}

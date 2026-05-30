@@ -29,6 +29,7 @@ const TeamList = () => {
         {!loading &&
           teams.map((team) => (
             <Card
+              type="Team"
               key={team._id}
               to={`/teams/${team._id}`}
               title={team.name}

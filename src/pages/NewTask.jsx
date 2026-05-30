@@ -172,7 +172,7 @@ const NewTask = () => {
               </select>
             </div>
 
-            <button type="submit" className="details-btn">
+            <button type="submit" className="btn-primary">
               Add Task
             </button>
           </form>

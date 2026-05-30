@@ -25,6 +25,8 @@ const Visualization = () => {
         )
       : [];
 
+  console.log(lastWeekRes);
+
   return (
     <div className="visualization">
       <div className="section-header">
@@ -42,20 +44,24 @@ const Visualization = () => {
 
               {lwLoading && <p className="card-text center">Loading data...</p>}
 
-              {Array.isArray(lastWeekRes?.tasks) &&
-                lastWeekRes.tasks.length > 0 && (
+              <p className="card-text">
+                {lastWeekRes?.count || 0} tasks completed in the last 7 days
+              </p>
+              {lastWeekRes?.dailyBreakdown &&
+                Object.keys(lastWeekRes.dailyBreakdown).length > 0 && (
                   <ReusableChart
                     type="bar"
-                    labels={lastWeekRes.tasks.map((task) =>
-                      new Date(task.updatedAt).toLocaleDateString("en-IN", {
-                        weekday: "short",
-                        day: "numeric",
-                        month: "short",
-                      }),
+                    labels={Object.keys(lastWeekRes.dailyBreakdown).map(
+                      (date) =>
+                        new Date(date).toLocaleDateString("en-IN", {
+                          weekday: "short",
+                          day: "numeric",
+                          month: "short",
+                        }),
                     )}
-                    data={Array(lastWeekRes.tasks.length).fill(1)}
+                    data={Object.values(lastWeekRes.dailyBreakdown)}
                     datasetLabel="Closed Tasks"
-                    colors={["#36A2EB"]} // ✅ restored
+                    colors={["#36A2EB"]}
                     height="260px"
                   />
                 )}

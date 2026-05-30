@@ -12,6 +12,15 @@ const TaskDetails = () => {
   const { taskId } = useParams();
   const { token } = useAuthContext();
 
+  const statusClass =
+    status?.toLowerCase() === "completed"
+      ? "status-completed"
+      : status?.toLowerCase() === "in progress"
+        ? "status-in-progress"
+        : status?.toLowerCase() === "blocked"
+          ? "status-blocked"
+          : "status-to-do";
+
   useEffect(() => {
     const fetchTask = async () => {
       try {
@@ -78,49 +87,68 @@ const TaskDetails = () => {
         <div className="card-detail-align">
           <div className="card-detail">
             <div className="card-info">
-              <p className="card-text muted">{task.status}</p>
+              <div className="task-header">
+                <span className={`status-badge ${statusClass}`}>
+                  {task.status}
+                </span>
 
-              <h2 className="card-heading">{task.name}</h2>
+                <h1 className="task-title">{task.name}</h1>
 
-              <p className="card-text">{task.description}</p>
+                <p className="task-description">{task.description}</p>
+              </div>
 
-              <p className="card-text">
-                <strong>Project:</strong> {task.project?.name}
-              </p>
+              <div className="task-meta-grid">
+                <div className="task-meta-card">
+                  <span>Project</span>
+                  <strong>{task.project?.name}</strong>
+                </div>
 
-              <p className="card-text">
-                <strong>Team:</strong> {task.team?.name}
-              </p>
+                <div className="task-meta-card">
+                  <span>Team</span>
+                  <strong>{task.team?.name}</strong>
+                </div>
+
+                <div className="task-meta-card">
+                  <span>Duration</span>
+                  <strong>{task.timeToComplete} weeks</strong>
+                </div>
+              </div>
 
               {task.owners?.length > 0 && (
                 <>
-                  <p className="card-text">
-                    <strong>Owners</strong>
-                  </p>
-                  <ul className="">
-                    {task.owners.map((owner) => (
-                      <li key={owner._id} className="nav-item">
-                        {owner.name}{" "}
-                        <span className="muted">({owner.email})</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="task-section">
+                    <h3 className="task-section-title">Owners</h3>
+
+                    <div className="owners-pills">
+                      {task.owners.map((owner) => (
+                        <div className="owner-card">
+                          <div className="owner-avatar">
+                            {owner.name.charAt(0)}
+                          </div>
+
+                          <div>
+                            <div>{owner.name}</div>
+                            <small>{owner.email}</small>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </>
               )}
 
-              {task.tags?.length > 0 && (
-                <p className="card-text">
-                  <strong>Tags:</strong> {task.tags.join(", ")}
-                </p>
-              )}
-
-              <p className="card-text">
-                <strong>Time to complete:</strong> {task.timeToComplete} weeks
-              </p>
+              <div className="task-section">
+                <h3 className="task-section-title">Tags</h3>{" "}
+                <div className="task-tags">
+                  {task.tags.map((tag) => (
+                    <span className="task-tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
 
               {task.status !== "Completed" && (
-                <div className="buttons">
-                  <button className="details-btn" onClick={markAsCompleted}>
+                <div className="task-actions">
+                  <button className="btn-success" onClick={markAsCompleted}>
                     Mark as Completed
                   </button>
                 </div>

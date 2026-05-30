@@ -60,7 +60,7 @@ const NewTeam = () => {
                 />
               </div>
 
-              <button className="submit-btn">Add Team</button>
+              <button className="btn-primary">Add Team</button>
             </form>
           </div>
         </div>{" "}

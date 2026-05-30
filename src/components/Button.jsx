@@ -1,7 +1,7 @@
 const Button = ({ name, func }) => {
   return (
     <>
-      <button className="search-btn" onClick={func}>
+      <button className="btn-nav" onClick={func}>
         {name}
       </button>
     </>
