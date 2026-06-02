@@ -1,0 +1,39 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background -->
+  <rect width="256" height="256" rx="56" fill="#0F172A"></rect>
+
+  <!-- Glow -->
+  <circle cx="128" cy="128" r="90" fill="#2563EB" opacity="0.15"></circle>
+
+  <!-- W -->
+  <path d="M48 72
+       L82 184
+       L128 102
+       L174 184
+       L208 72" stroke="url(#grad)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+
+  <!-- Eye -->
+  <circle cx="142" cy="132" r="7" fill="#93C5FD"></circle>
+
+  <!-- Wink -->
+  <path d="M166 132
+       L182 126" stroke="#93C5FD" stroke-width="6" stroke-linecap="round"></path>
+
+  <!-- Smile -->
+  <path d="M145 154
+       Q162 170 182 154" stroke="#60A5FA" stroke-width="5" stroke-linecap="round" fill="none"></path>
+
+  <!-- Checkmark -->
+  <path d="M184 82
+       L194 94
+       L212 66" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+
+  <defs>
+    <linearGradient id="grad" x1="48" y1="72" x2="208" y2="184">
+      <stop stop-color="#60A5FA"></stop>
+      <stop offset="1" stop-color="#2563EB"></stop>
+    </linearGradient>
+  </defs>
+
+</svg>
