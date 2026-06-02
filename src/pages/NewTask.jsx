@@ -35,7 +35,7 @@ const NewTask = () => {
       await addTask(formData);
       navigate("/tasks");
     } catch (error) {
-      alert(error.message);
+      alert("Please fill all the fields");
       console.log(error);
     } finally {
     }
