@@ -123,6 +123,7 @@ const NewTask = () => {
                   styles={customSelectStyles}
                   options={ownerOptions}
                   isClearable
+                  required
                   placeholder="owners"
                   onChange={(selectedOptions) =>
                     handleMultiSelectChange(selectedOptions, "owners")
@@ -135,6 +136,7 @@ const NewTask = () => {
                 <Select
                   styles={customSelectStyles}
                   isMulti
+                  required
                   isClearable
                   onChange={(selectedOptions) =>
                     handleMultiSelectChange(selectedOptions, "tags")
@@ -153,6 +155,7 @@ const NewTask = () => {
                   value={formData.timeToComplete}
                   onChange={handleChange}
                   placeholder="In days"
+                  required
                   name="timeToComplete"
                 />
               </div>
@@ -164,6 +167,7 @@ const NewTask = () => {
                 name="status"
                 value={formData.status}
                 onChange={handleChange}
+                required
               >
                 <option value="To Do">To Do</option>
                 <option value="In Progress">In Progress</option>

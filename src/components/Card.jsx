@@ -46,7 +46,7 @@ const Card = ({
 
           {description && <p className="card-description">{description}</p>}
 
-          {(owners.length > 0 || timeToComplete) && (
+          {(owners.length > 0 || timeToComplete != null) && (
             <div className="card-meta">
               {owners.length > 0 && (
                 <div className="card-owners">
@@ -66,10 +66,14 @@ const Card = ({
                 </div>
               )}
 
-              {timeToComplete !== undefined && timeToComplete !== null && (
+              {timeToComplete != null && (
                 <div className="card-time">
                   <span className="card-label">Timeline</span>
-                  <span>{timeToComplete} weeks</span>
+                  <span>
+                    {timeToComplete === 0
+                      ? "Immediate"
+                      : `${timeToComplete} weeks`}
+                  </span>
                 </div>
               )}
             </div>
