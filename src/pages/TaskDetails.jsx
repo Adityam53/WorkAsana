@@ -13,11 +13,11 @@ const TaskDetails = () => {
   const { token } = useAuthContext();
 
   const statusClass =
-    status?.toLowerCase() === "completed"
+    task?.status?.toLowerCase() === "completed"
       ? "status-completed"
-      : status?.toLowerCase() === "in progress"
+      : task?.status?.toLowerCase() === "in progress"
         ? "status-in-progress"
-        : status?.toLowerCase() === "blocked"
+        : task?.status?.toLowerCase() === "blocked"
           ? "status-blocked"
           : "status-to-do";
 
