@@ -72,7 +72,7 @@ const Card = ({
                   <span>
                     {timeToComplete === 0
                       ? "Immediate"
-                      : `${timeToComplete} weeks`}
+                      : `${timeToComplete} days`}
                   </span>
                 </div>
               )}

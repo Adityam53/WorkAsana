@@ -2,6 +2,7 @@ import { useState } from "react";
 import SideBar from "../components/SideBar";
 import { useProjectContext } from "../contexts/ProjectContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const NewProject = () => {
   const navigate = useNavigate();
@@ -19,15 +20,24 @@ const NewProject = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.name.trim()) {
+      toast.error("Project name is required.");
+      return;
+    }
+
+    if (!formData.description.trim()) {
+      toast.error("Project description is required.");
+      return;
+    }
+
     try {
       await addProject(formData);
-    } catch (error) {
-      alert(error.message);
-    } finally {
       navigate("/projects");
+    } catch (error) {
+      toast.error(error.message);
     }
   };
-
   return (
     <main className="row">
       {/* <div>

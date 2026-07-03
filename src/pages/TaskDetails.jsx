@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import { useTaskContext } from "../contexts/TaskContext";
 import { useEffect, useState } from "react";
@@ -8,9 +8,10 @@ const TaskDetails = () => {
   const [task, setTask] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const { updateTask } = useTaskContext();
+  const { updateTask, deleteTask, getTaskById } = useTaskContext();
   const { taskId } = useParams();
   const { token } = useAuthContext();
+  const navigate = useNavigate();
 
   const statusClass =
     task?.status?.toLowerCase() === "completed"
@@ -24,16 +25,7 @@ const TaskDetails = () => {
   useEffect(() => {
     const fetchTask = async () => {
       try {
-        const res = await fetch(
-          `https://work-asana-backend-puce.vercel.app/tasks/${taskId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
-
-        const data = await res.json();
+        const data = await getTaskById(taskId);
         setTask(data);
       } catch (err) {
         console.error(err);
@@ -46,19 +38,34 @@ const TaskDetails = () => {
       fetchTask();
     }
   }, [taskId, token]);
+
   const markAsCompleted = async () => {
     try {
-      await updateTask(taskId, { status: "Completed" });
-
-      setTask((prev) => ({
-        ...prev,
+      const updated = await updateTask(taskId, {
         status: "Completed",
-      }));
+      });
+
+      setTask(updated);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const handleDelete = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this task?",
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await deleteTask(taskId);
+
+      navigate("/tasks");
+    } catch (err) {
+      console.error(err);
+    }
+  };
   if (loading) {
     return (
       <div className="center">
@@ -110,7 +117,7 @@ const TaskDetails = () => {
 
                 <div className="task-meta-card">
                   <span>Duration</span>
-                  <strong>{task.timeToComplete} weeks</strong>
+                  <strong>{task.timeToComplete} days</strong>
                 </div>
               </div>
 
@@ -146,13 +153,21 @@ const TaskDetails = () => {
                 </div>
               </div>
 
-              {task.status !== "Completed" && (
-                <div className="task-actions">
+              <div className="task-actions">
+                <Link to={`/tasks/edit/${task._id}`}>
+                  <button className="btn-primary">Edit</button>
+                </Link>
+
+                {task.status !== "Completed" && (
                   <button className="btn-success" onClick={markAsCompleted}>
                     Mark as Completed
                   </button>
-                </div>
-              )}
+                )}
+
+                <button className="btn-danger" onClick={handleDelete}>
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>

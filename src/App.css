@@ -327,9 +327,10 @@
   padding: 0.8rem 1.4rem;
   border-radius: 10px;
 
-  background: #1e5f54;
-  color: #ffffff;
-  border: none;
+  background: rgba(30, 95, 84, 0.15);
+  border: 1px solid rgba(30, 95, 84, 0.3);
+
+  color: #5eead4;
 
   font-weight: 600;
   cursor: pointer;
@@ -338,8 +339,21 @@
 }
 
 .btn-success:hover {
-  background: #245f57;
-  color: #0b1120;
+  background: rgba(30, 95, 84, 0.25);
+  border-color: rgba(30, 95, 84, 0.45);
+
+  color: #99f6e4;
+
+  transform: translateY(-1px);
+}
+
+.btn-success:active {
+  transform: translateY(0);
+}
+
+.btn-success:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(30, 95, 84, 0.15);
 }
 .btn-ghost {
   display: inline-flex;
@@ -378,6 +392,42 @@
   border-color: rgba(96, 165, 250, 0.35);
 
   box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+}
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.8rem 1.4rem;
+  border-radius: 10px;
+
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+
+  color: #f87171;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.35);
+
+  color: #fca5a5;
+
+  transform: translateY(-1px);
+}
+
+.btn-danger:active {
+  transform: translateY(0);
+}
+
+.btn-danger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
 }
 /* ------------------------------------
    CARD DETAIL (USED ELSEWHERE)
@@ -2189,7 +2239,7 @@ p {
 .task-actions {
   display: flex;
   justify-content: flex-end;
-
+  gap: 1rem;
   margin-top: 2rem;
 
   padding-top: 1.5rem;

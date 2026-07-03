@@ -19,6 +19,7 @@ import NewProject from "./pages/NewProject";
 import TaskDetails from "./pages/TaskDetails";
 import ProjectView from "./pages/ProjectView";
 import Tasks from "./pages/Tasks";
+import EditTask from "./pages/EditTask";
 
 function App() {
   return (
@@ -120,6 +121,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <NewTask />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="/tasks/edit/:taskId"
+              element={
+                <ProtectedRoute>
+                  <EditTask />
                 </ProtectedRoute>
               }
             ></Route>

@@ -33,6 +33,21 @@ export const TaskProvider = ({ children }) => {
     return task;
   };
 
+  const getTaskById = async (taskId) => {
+    const res = await fetch(`${BASE_URL}/tasks/${taskId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || "Failed to fetch task");
+    }
+
+    return await res.json();
+  };
+
   const updateTask = async (taskId, updates) => {
     const res = await fetch(`${BASE_URL}/tasks/${taskId}`, {
       method: "PUT",
@@ -55,9 +70,31 @@ export const TaskProvider = ({ children }) => {
     return data.task;
   };
 
+  const deleteTask = async (taskId) => {
+    const res = await fetch(`${BASE_URL}/tasks/${taskId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || "Failed to delete task");
+    }
+
+    const data = await res.json();
+
+    toast.success("Task Deleted");
+
+    return data;
+  };
+
   const value = {
     addTask,
     updateTask,
+    deleteTask,
+    getTaskById,
   };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

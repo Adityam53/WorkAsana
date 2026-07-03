@@ -2,6 +2,7 @@ import { useState } from "react";
 import SideBar from "../components/SideBar";
 import { useTeamContext } from "../contexts/TeamContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const NewTeam = () => {
   const [formData, setFormData] = useState({
@@ -16,12 +17,22 @@ const NewTeam = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.name.trim()) {
+      toast.error("Team name is required.");
+      return;
+    }
+
+    if (!formData.description.trim()) {
+      toast.error("Team description is required.");
+      return;
+    }
+
     try {
       await addTeam(formData);
-    } catch (error) {
-      alert(error.message);
-    } finally {
       navigate("/teams");
+    } catch (error) {
+      toast.error(error.message);
     }
   };
   return (

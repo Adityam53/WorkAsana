@@ -23,34 +23,30 @@ export const ProjectProvider = ({ children }) => {
   }, [data]);
 
   const addProject = async (projectData) => {
-    try {
-      const res = await fetch(
-        "https://work-asana-backend-puce.vercel.app/projects",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(projectData),
+    const res = await fetch(
+      "https://work-asana-backend-puce.vercel.app/projects",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify(projectData),
+      },
+    );
 
-      if (!res.ok) {
-        toast.error("Failed to add Project");
-        throw new Error(`Failed to add Project`);
-      }
+    const data = await res.json();
 
-      const data = await res.json();
-      toast.success("Project Added");
-      console.log(data);
-
-      setProjects((prev) => [...prev, data.savedProject]);
-    } catch (error) {
-      console.error(error);
+    if (!res.ok) {
+      throw new Error(data.error || "Failed to add project");
     }
-  };
 
+    toast.success("Project added");
+
+    setProjects((prev) => [...prev, data.savedProject]);
+
+    return data.savedProject;
+  };
   return (
     <ProjectContext.Provider value={{ projects, loading, error, addProject }}>
       {children}

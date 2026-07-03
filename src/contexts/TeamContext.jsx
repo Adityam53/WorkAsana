@@ -10,7 +10,7 @@ export const TeamProvider = ({ children }) => {
   const { token } = useAuthContext();
   const [teams, setTeams] = useState([]);
   const { data, error, loading } = useFetch(
-    "https://work-asana-backend-puce.vercel.app/teams"
+    "https://work-asana-backend-puce.vercel.app/teams",
   );
 
   useEffect(() => {
@@ -21,34 +21,32 @@ export const TeamProvider = ({ children }) => {
   }, [data]);
 
   const addTeam = async (teamData) => {
-    try {
-      const res = await fetch(
-        "https://work-asana-backend-puce.vercel.app/teams",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(teamData),
-        }
-      );
+    const res = await fetch(
+      "https://work-asana-backend-puce.vercel.app/teams",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(teamData),
+      },
+    );
 
-      if (!res.ok) {
-        toast.error("Failed to add Team");
-        throw new Error("Failed to add team");
-      }
-
-      const data = await res.json();
-      toast.success("Team added");
-
-      console.log(data);
-
-      setTeams((prev) => [...prev, data]);
-    } catch (error) {
-      console.log(error);
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || "Failed to add task");
     }
+
+    const data = await res.json();
+
+    toast.success("Team added");
+
+    setTeams((prev) => [...prev, data]);
+
+    return data;
   };
+
   return (
     <TeamContext.Provider value={{ teams, loading, error, addTeam }}>
       {children}

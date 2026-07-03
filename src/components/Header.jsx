@@ -13,7 +13,7 @@ const Header = ({ open, setOpen }) => {
     <header className="header">
       <div className="header-container">
         <Link to="/dashboard" className="navbar-brand">
-          WorkAsana
+          WorkBridge
         </Link>
 
         <button
